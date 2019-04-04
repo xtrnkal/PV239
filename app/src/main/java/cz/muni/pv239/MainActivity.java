@@ -19,17 +19,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
-        //appBarLayout = (AppBarLayout) findViewById(R.id.appbar_id);
+
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        adapter.AddFragment(new FragmentTask(), "Task");
-        adapter.AddFragment(new FragmentSecond(), "Third");
-        adapter.AddFragment(new FragmentThird(), "Second");
+        adapter.AddFragment(new FragmentTask(), "clock");
+        adapter.AddFragment(new FragmentSecond(), "Second");
+        adapter.AddFragment(new FragmentThird(), "Third");
+        adapter.AddFragment(new FragmentThird(), "Fourth");
 
         viewPager.setAdapter(adapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        //appBarLayout = (AppBarLayout) findViewById(R.id.appbar_id);
+
+
+
+
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.clockinv);
+        tabLayout.getTabAt(0).setText(null);
+        tabLayout.getTabAt(1).setIcon(R.drawable.skylineinv);
+        tabLayout.getTabAt(1).setText(null);
+
+        tabLayout.getTabAt(2).setIcon(R.drawable.computerinv);
+        tabLayout.getTabAt(2).setText(null);
+
+        tabLayout.getTabAt(3).setIcon(R.drawable.gearsinv);
+        tabLayout.getTabAt(3).setText(null);
+
+
+
 
     }
 }
