@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="dark_purple">#1B1538</color>
     <color name="tabtextcolor">#fff</color>
-    <color name="tabtindicatorcolor">#2d2d2d</color>
-
+    <color name="tabtindicatorcolor">#422557</color>
+    <color name="gray">#E7E7E7</color>
+    <color name="colorwhite">#FFFFFF</color>
 </resources>

@@ -8,16 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentThird extends Fragment {
+public class FragmentSettings extends Fragment {
     View view;
 
-    public FragmentThird() {
+    public FragmentSettings() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.third_fragment, container, false);
+        view = inflater.inflate(R.layout.settings_fragment, container, false);
         return view;
     }
 }

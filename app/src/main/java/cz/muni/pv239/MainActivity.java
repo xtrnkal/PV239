@@ -1,6 +1,5 @@
 package cz.muni.pv239;
 
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new FragmentTask(), "clock");
-        adapter.AddFragment(new FragmentSecond(), "Second");
-        adapter.AddFragment(new FragmentThird(), "Third");
-        adapter.AddFragment(new FragmentThird(), "Fourth");
+        adapter.AddFragment(new FragmentCity(), "Second");
+        adapter.AddFragment(new FragmentAnalysis(), "Third");
+        adapter.AddFragment(new FragmentSettings(), "Fourth");
 
         viewPager.setAdapter(adapter);
 
