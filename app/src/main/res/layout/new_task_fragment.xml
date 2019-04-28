@@ -5,15 +5,10 @@
     android:id="@+id/time_fragment_container">
 
     <Button
-        android:id="@+id/btn_start"
+        android:id="@+id/btn_create_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start" />
-    <Button
-        android:id="@+id/btn_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop" />
+        android:text="Create" />
     <Button
         android:id="@+id/btn_back_to_list"
         android:layout_width="match_parent"

@@ -9,18 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FragmentTaskList extends Fragment implements View.OnClickListener {
+public class FragmentNewTask extends Fragment implements View.OnClickListener {
     View view;
 
-    public FragmentTaskList() {
+    public FragmentNewTask() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.task_list_fragment, container, false);
-        /*Button btnNew = (Button) view.findViewById(R.id.btn_add_new_task);
-        btnNew.setOnClickListener(this);
+        view = inflater.inflate(R.layout.new_task_fragment, container, false);
+/*
+        Button btnCreate = (Button) view.findViewById(R.id.btn_create_task);
+        btnCreate.setOnClickListener(this);
         */
         return view;
     }
@@ -32,21 +33,21 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        Button brain1 = (Button) view.findViewById(R.id.brain1);
-        brain1.setOnClickListener(this);
-        Button btnNew = (Button) view.findViewById(R.id.btn_add_new_task);
-        btnNew.setOnClickListener(this);
+        Button btnBack = (Button) view.findViewById(R.id.btn_back_to_list);
+        btnBack.setOnClickListener(this);
+        Button btnCreate = (Button) view.findViewById(R.id.btn_create_task);
+        btnCreate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.brain1:
-                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTime()).commit();
+            case R.id.btn_back_to_list:
+                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
                 break;
-            case R.id.btn_add_new_task:
-                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentNewTask()).commit();
+            case R.id.btn_create_task:
+                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
                 break;
         }
 
