@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.AddFragment(new FragmentCity(), "Second");
         adapter.AddFragment(new FragmentAnalysis(), "Third");
         adapter.AddFragment(new FragmentSettings(), "Fourth");
+        //adapter.AddFragment(new FragmentTime(), "time");
 
         viewPager.setAdapter(adapter);
 
