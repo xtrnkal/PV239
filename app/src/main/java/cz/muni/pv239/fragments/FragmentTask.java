@@ -1,4 +1,4 @@
-package cz.muni.pv239;
+package cz.muni.pv239.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,8 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import cz.muni.pv239.R;
+import cz.muni.pv239.Task;
+import cz.muni.pv239.fragments.FragmentTaskList;
+
 public class FragmentTask extends Fragment {
     View view;
+    private ArrayList<Task> tasks;
 
     public FragmentTask() {
     }
@@ -24,6 +31,12 @@ public class FragmentTask extends Fragment {
         ft.replace(R.id.task_fragment_container, new FragmentTaskList());
         ft.commit();
 
+/*
+        Bundle b = this.getArguments();
+        tasks = (ArrayList<Task>) b.getSerializable("tasks");
+
+        System.out.println("TADY" + tasks.get(0).getName() + tasks.get(1).getName());
+*/
         return view;
     }
 }
