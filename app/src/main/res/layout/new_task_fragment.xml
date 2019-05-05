@@ -12,11 +12,7 @@
         android:inputType="textPersonName"
         android:text="Name" />
 
-    <Button
-        android:id="@+id/btn_create_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create" />
+
     <Button
         android:id="@+id/btn_back_to_list"
         android:layout_width="match_parent"

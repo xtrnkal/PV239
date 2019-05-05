@@ -43,6 +43,18 @@ public class DataManager {
         saveTasks();
     }
 
+    public void editTask(String nameBefore, String nameAfter) {
+        Task before = new Task(nameBefore);
+        Task after = new Task(nameAfter);
+
+        if (tasks.contains(before) == true && tasks.contains(after) == false) {
+            tasks.set(tasks.indexOf(before), after);
+        } else if (tasks.contains(after) == false) {
+            tasks.add(after);
+        }
+        saveTasks();
+    }
+
     public void editStatistics(String name, Integer value) {
         current.addValue(name, value);
 
