@@ -91,7 +91,7 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
                 public void onClick(View v) {
                     Bundle b = new Bundle();
                     b.putString("name", task.getName());
-
+                    //System.out.println(task.getName());
                     FragmentTime fTime = new FragmentTime();
                     fTime.setArguments(b);
                     linearLayout.removeAllViews();
