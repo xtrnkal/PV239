@@ -15,16 +15,19 @@ import android.widget.TextView;
 import com.triggertrap.seekarc.SeekArc;
 import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 import cz.muni.pv239.R;
+import cz.muni.pv239.Statistics;
 
+import static cz.muni.pv239.MainActivity.dataManager;
 import static java.lang.Integer.parseInt;
 
 public class FragmentTime extends Fragment {
     View view;
 
-    private static final long START_TIME_IN_MILLIS = 6000;
+    private static final long START_TIME_IN_MILLIS = 20 * 60 * 1000;
 
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
@@ -32,8 +35,12 @@ public class FragmentTime extends Fragment {
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mTimeStartInMillis;
     private TextView mTimeTask;
+    private String taskName;
 
+
+    private Button getStatistics;
 
 
     private SeekArc mSeekArc;
@@ -48,16 +55,13 @@ public class FragmentTime extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.time_fragment, container, false);
 
-        String name = null;
+        taskName = null;
         if (this.getArguments()!= null) {
-            name = this.getArguments().getString("name");
-            System.out.println(name);
+            taskName = this.getArguments().getString("name");
         }
-        final boolean exists = (name != null);
-        final String nameFin = name;
 
         mTimeTask = (TextView) view.findViewById(R.id.time_task);
-        mTimeTask.setText(name);
+        mTimeTask.setText(taskName);
         mTextViewCountDown = mTimeTask;
 
         mSeekArc = (SeekArc) view.findViewById(R.id.seek_arc);
@@ -90,13 +94,25 @@ public class FragmentTime extends Fragment {
                     pauseTimer();
                 } else {
                     String textTime = (String) mSeekArcProgress.getText();
-                    mTimeLeftInMillis = parseInt(textTime.split(":")[0]) * 60 * 1000;
-                    mSeekArc.setVisibility(View.INVISIBLE);
-                    startTimer();
+                    mTimeStartInMillis = parseInt(textTime.split(":")[0]) * 60 * 1000;
+                    if (mTimeLeftInMillis > 0) {
+                        mTimeLeftInMillis = mTimeStartInMillis;
+                        mSeekArc.setVisibility(View.INVISIBLE);
+                        startTimer();
+                    }
                 }
             }
         });
 
+        getStatistics = view.findViewById(R.id.btn_get_statistics);
+        getStatistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                HashMap<String, Statistics> statistics = dataManager.getStatistics();
+
+            }
+        });
 
         return view;
     }
@@ -113,8 +129,10 @@ public class FragmentTime extends Fragment {
             public void onFinish() {
                 mTimerRunning = false;
                 mButtonStartPause.setText("Start");
-                mButtonStartPause.setVisibility(View.INVISIBLE);
-                //mButtonReset.setVisibility(View.VISIBLE);
+                mButtonStartPause.setVisibility(View.VISIBLE);
+                mSeekArc.setVisibility(View.VISIBLE);
+                mSeekArcProgress.setText(Long.toString(START_TIME_IN_MILLIS/(60*1000)));
+                dataManager.editStatistics(taskName, (int)(mTimeStartInMillis/(60*1000)));
             }
         }.start();
 

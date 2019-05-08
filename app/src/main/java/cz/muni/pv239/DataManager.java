@@ -30,7 +30,7 @@ public class DataManager {
         current.addBuilding(BuildingType.MEDIUM);
         current.addBuilding(BuildingType.HUGE);
 
-        statistics.put("current.getMonth() + current.getYear()", current);
+        statistics.put((current.getMonth().toString() + current.getYear()), current);
     }
 
     public void addTask(String name) {
@@ -57,18 +57,6 @@ public class DataManager {
 
     public void editStatistics(String name, Integer value) {
         current.addValue(name, value);
-
-
-        /*
-        if (value < 10) {
-            current.addBuilding(BuildingType.SMALL);
-        } else if (value < 30) {
-            current.addBuilding(BuildingType.MEDIUM);
-        } else if (value < 60) {
-            current.addBuilding(BuildingType.LARGE);
-        } else {
-            current.addBuilding(BuildingType.HUGE);
-        }*/
 
         saveStatistics();
     }
