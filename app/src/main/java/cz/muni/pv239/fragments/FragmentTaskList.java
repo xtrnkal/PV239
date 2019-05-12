@@ -65,60 +65,61 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         LayoutParams buttonParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         ArrayList<Task> tasks = dataManager.getTasks();
-        for (final Task task:tasks) {
-            //System.out.println(task.getName());
+        if (!tasks.isEmpty()) {
+            for (final Task task : tasks) {
+                System.out.println("Tady je nejaky task:" + task.getName());
 
-            LinearLayout taskLayout = new LinearLayout(getActivity());
-            taskLayout.setOrientation(LinearLayout.HORIZONTAL);
-            taskLayout.setBackgroundResource(R.color.colorwhite);
+                LinearLayout taskLayout = new LinearLayout(getActivity());
+                taskLayout.setOrientation(LinearLayout.HORIZONTAL);
+                taskLayout.setBackgroundResource(R.color.colorwhite);
 
-            taskLayout.setGravity(Gravity.CENTER_VERTICAL);
-            taskLayout.setPadding(40,20,0,20);
-            TextView text = new TextView(getActivity());
+                taskLayout.setGravity(Gravity.CENTER_VERTICAL);
+                taskLayout.setPadding(40, 20, 0, 20);
+                TextView text = new TextView(getActivity());
 
-            text.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics()));
-            text.setText(task.getName());
-            text.setTextColor(R.color.dark_purple);
-            text.setTextSize(30);
-            text.setPadding(30,0,0,0);
-            taskLayout.addView(text);
+                text.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics()));
+                text.setText(task.getName());
+                text.setTextColor(R.color.dark_purple);
+                text.setTextSize(30);
+                text.setPadding(30, 0, 0, 0);
+                taskLayout.addView(text);
 
-            Button brain = new Button(getActivity());
-            brain.setBackgroundResource(drawable.btn_brain_2);
+                Button brain = new Button(getActivity());
+                brain.setBackgroundResource(drawable.btn_brain_2);
 
-            brain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle b = new Bundle();
-                    b.putString("name", task.getName());
-                    //System.out.println(task.getName());
-                    FragmentTime fTime = new FragmentTime();
-                    fTime.setArguments(b);
-                    linearLayout.removeAllViews();
-                    getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, fTime).commit();
-                }
-            });
-            taskLayout.addView(brain);
+                brain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle b = new Bundle();
+                        b.putString("name", task.getName());
+                        //System.out.println(task.getName());
+                        FragmentTime fTime = new FragmentTime();
+                        fTime.setArguments(b);
+                        linearLayout.removeAllViews();
+                        getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, fTime).commit();
+                    }
+                });
+                taskLayout.addView(brain);
 
-            Button gears = new Button(getActivity());
-            gears.setBackgroundResource(drawable.btn_gears_2);
-            gears.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle b = new Bundle();
-                    b.putString("name", task.getName());
+                Button gears = new Button(getActivity());
+                gears.setBackgroundResource(drawable.btn_gears_2);
+                gears.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle b = new Bundle();
+                        b.putString("name", task.getName());
 
-                    FragmentEditTask fTask = new FragmentEditTask();
-                    fTask.setArguments(b);
-                    linearLayout.removeAllViews();
-                    getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, fTask).commit();
+                        FragmentEditTask fTask = new FragmentEditTask();
+                        fTask.setArguments(b);
+                        linearLayout.removeAllViews();
+                        getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, fTask).commit();
+                    }
+                });
+                taskLayout.addView(gears);
+
+                linearLayout.addView(taskLayout);
+            }
         }
-    });
-            taskLayout.addView(gears);
-
-            linearLayout.addView(taskLayout);
-        }
-
         Button addNew = new Button(getActivity());
         addNew.setText("Add new task");
         addNew.setOnClickListener(new View.OnClickListener() {

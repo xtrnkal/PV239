@@ -20,7 +20,7 @@ import cz.muni.pv239.fragments.FragmentTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static DataManager dataManager = new DataManager();
+    public static DataManager dataManager;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dataManager = new DataManager(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

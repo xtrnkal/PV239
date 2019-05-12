@@ -61,9 +61,9 @@ public class FragmentEditTask extends Fragment {
             @Override
             public void onClick(View v) {
                 if (exists) {
-                    dataManager.editTask(nameFin, text.getText().toString());
+                    dataManager.editTask(nameFin, text.getText().toString(), getContext());
                 } else {
-                    dataManager.addTask(text.getText().toString());
+                    dataManager.addTask(text.getText().toString(), getContext());
                 }
 
                 hideKeyboard(getActivity());

@@ -110,6 +110,8 @@ public class FragmentTime extends Fragment {
             public void onClick(View v) {
 
                 HashMap<String, Statistics> statistics = dataManager.getStatistics();
+                System.out.println(statistics.toString());
+                System.out.println(dataManager.getTasks().toString());
 
             }
         });
@@ -132,7 +134,7 @@ public class FragmentTime extends Fragment {
                 mButtonStartPause.setVisibility(View.VISIBLE);
                 mSeekArc.setVisibility(View.VISIBLE);
                 mSeekArcProgress.setText(Long.toString(START_TIME_IN_MILLIS/(60*1000)));
-                dataManager.editStatistics(taskName, (int)(mTimeStartInMillis/(60*1000)));
+                dataManager.editStatistics(taskName, (int)(mTimeStartInMillis/(60*1000)), getContext());
             }
         }.start();
 

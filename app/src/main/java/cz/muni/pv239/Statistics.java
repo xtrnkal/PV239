@@ -7,10 +7,10 @@ import cz.muni.pv239.enums.BuildingType;
 import cz.muni.pv239.enums.Month;
 
 public class Statistics {
-    HashMap<String, Integer> values = new HashMap<>();
-    HashMap<BuildingType, Integer> city = new HashMap<>();
-    int year;
-    Month month;
+    private HashMap<String, Integer> values = new HashMap<>();
+    private HashMap<BuildingType, Integer> city = new HashMap<>();
+    private int year;
+    private Month month;
 
     public Statistics(int year, Month month) {
         this.month = month;
@@ -51,6 +51,13 @@ public class Statistics {
         city.put(type, ++count);
     }
 
+    public void addMoreBuildings(BuildingType type, int count) {
+        for(int i = 0; i < count; i++) {
+            addBuilding(type);
+        }
+    }
+
+
     public HashMap<String, Integer> getValues() {
         return values;
     }
@@ -81,5 +88,26 @@ public class Statistics {
 
     public void setMonth(Month month) {
         this.month = month;
+    }
+
+    @Override
+    public String toString() {
+        return  "YEAR=" + year + ";MONTH=" + month + ";VALUES=" + values.toString() + ";CITY=" + city.toString();
+        /*
+        return "Statistics{" +
+                "values=" + values +
+                ", city=" + city +
+                ", year=" + year +
+                ", month=" + month +
+                '}';
+                */
+    }
+
+    public void deleteAllValues() {
+        this.values.clear();
+    }
+
+    public void clearCity() {
+        this.city.clear();
     }
 }

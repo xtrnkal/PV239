@@ -18,7 +18,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/delete_all_data"
                 android:layout_width="136dp"
                 android:layout_height="59dp"
                 android:layout_weight="1"
