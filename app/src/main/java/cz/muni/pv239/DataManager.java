@@ -27,7 +27,7 @@ public class DataManager {
 
     private HashMap<String, Statistics> statistics = new HashMap<>();
     private ArrayList<Task> tasks = new ArrayList<>();
-    private Statistics current;
+    //private Statistics current;
 
     public DataManager(Context context) {
         loadData(context);
@@ -39,12 +39,16 @@ public class DataManager {
         tasks.add(new Task("Coding"));
         tasks.add(new Task("Workout"));
 */
+       /*
         current = new Statistics(2019, Month.MARCH);
         current.addValue("Study", new Integer(50));
         current.addValue("Workout", new Integer(120));
 
         current.addBuilding(BuildingType.SMALL);
         current.addBuilding(BuildingType.SMALL);
+        current.addBuilding(BuildingType.MEDIUM);
+        current.addBuilding(BuildingType.MEDIUM);
+        current.addBuilding(BuildingType.MEDIUM);
         current.addBuilding(BuildingType.MEDIUM);
         current.addBuilding(BuildingType.HUGE);
 
@@ -57,16 +61,19 @@ public class DataManager {
         jine.addBuilding(BuildingType.SMALL);
         jine.addBuilding(BuildingType.SMALL);
         jine.addBuilding(BuildingType.MEDIUM);
+        jine.addBuilding(BuildingType.MEDIUM);
+        jine.addBuilding(BuildingType.MEDIUM);
+        jine.addBuilding(BuildingType.MEDIUM);
         jine.addBuilding(BuildingType.HUGE);
         statistics.put((jine.getMonth().toString() + jine.getYear()), jine);
-
-        String a = statisticsToString();
+*/
+        //String a = statisticsToString();
         loadTasks(context);
         loadStatistics(context);
 
-        System.out.println("---------- ukladani po nacteni ------------");
-        saveStatistics(context);
-        System.out.println("---------- po ukladani po nacteni ------------");
+        //System.out.println("---------- ukladani po nacteni ------------");
+        //saveStatistics(context);
+        //System.out.println("---------- po ukladani po nacteni ------------");
 
     }
 
@@ -95,7 +102,7 @@ public class DataManager {
     }
 
     public void editStatistics(String name, Integer value, Context context) {
-        current.addValue(name, value);
+        //current.addValue(name, value);
 
         saveStatistics(context);
     }
@@ -308,8 +315,8 @@ public class DataManager {
 
             this.statistics.clear();
             this.tasks.clear();
-            this.current.deleteAllValues();
-            this.current.clearCity();
+            //this.current.deleteAllValues();
+            //this.current.clearCity();
 
             //Files.newBufferedWriter(TASKS_FILE , StandardOpenOption.TRUNCATE_EXISTING);
 
