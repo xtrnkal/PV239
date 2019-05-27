@@ -30,10 +30,7 @@ public class Statistics {
             values.put(name, time);
         } else {
             values.put(name, time+val);
-            //values.replace(name, time + val);
-            //TODO upravit
         }
-
 
         if (time < 10) {
             addBuilding(BuildingType.SMALL);
@@ -46,9 +43,18 @@ public class Statistics {
         }
     }
 
+    public void addTaskValue (String name, Integer time) {
+        Integer val = values.get(name);
+        if (val == null) {
+            values.put(name, time);
+        } else {
+            values.put(name, time+val);
+        }
+    }
+
     public void addBuilding(BuildingType type) {
         Integer count = city.get(type);
-        city.put(type, ++count);
+        city.put(type, count + 1);
     }
 
     public void addMoreBuildings(BuildingType type, int count) {
@@ -56,7 +62,6 @@ public class Statistics {
             addBuilding(type);
         }
     }
-
 
     public HashMap<String, Integer> getValues() {
         return values;
@@ -93,14 +98,6 @@ public class Statistics {
     @Override
     public String toString() {
         return  "YEAR=" + year + ";MONTH=" + month + ";VALUES=" + values.toString() + ";CITY=" + city.toString();
-        /*
-        return "Statistics{" +
-                "values=" + values +
-                ", city=" + city +
-                ", year=" + year +
-                ", month=" + month +
-                '}';
-                */
     }
 
     public void deleteAllValues() {

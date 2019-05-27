@@ -5,6 +5,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class FragmentTime extends Fragment {
 
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
-    private Button mButtonReset;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
@@ -39,15 +39,12 @@ public class FragmentTime extends Fragment {
     private TextView mTimeTask;
     private String taskName;
 
-
-    private Button getStatistics;
-
+    private Button goBack;
 
     private SeekArc mSeekArc;
     private TextView mSeekArcProgress;
 
     public FragmentTime() {
-        //MainActivity.dataManager.getTasks();
     }
 
     @Nullable
@@ -83,7 +80,6 @@ public class FragmentTime extends Fragment {
             }
         });
 
-
         mButtonStartPause = view.findViewById(R.id.btn_start);
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +91,7 @@ public class FragmentTime extends Fragment {
                 } else {
                     String textTime = (String) mSeekArcProgress.getText();
                     mTimeStartInMillis = parseInt(textTime.split(":")[0]) * 60 * 1000;
-                    if (mTimeLeftInMillis > 0) {
+                    if (mTimeStartInMillis > 0) {
                         mTimeLeftInMillis = mTimeStartInMillis;
                         mSeekArc.setVisibility(View.INVISIBLE);
                         startTimer();
@@ -104,22 +100,18 @@ public class FragmentTime extends Fragment {
             }
         });
 
-        getStatistics = view.findViewById(R.id.btn_get_statistics);
-        getStatistics.setOnClickListener(new View.OnClickListener() {
+        goBack = view.findViewById(R.id.btn_back_to_list);
+        goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                HashMap<String, Statistics> statistics = dataManager.getStatistics();
-                System.out.println(statistics.toString());
-                System.out.println(dataManager.getTasks().toString());
-
+                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
             }
         });
-
         return view;
     }
 
     private void startTimer() {
+
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -140,20 +132,17 @@ public class FragmentTime extends Fragment {
 
         mTimerRunning = true;
         mButtonStartPause.setText("pause");
-        //mButtonReset.setVisibility(View.INVISIBLE);
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
         mButtonStartPause.setText("Start");
-        //mButtonReset.setVisibility(View.VISIBLE);
     }
 
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
-        //mButtonReset.setVisibility(View.INVISIBLE);
         mButtonStartPause.setVisibility(View.VISIBLE);
     }
 
@@ -162,7 +151,6 @@ public class FragmentTime extends Fragment {
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
 
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-
         mSeekArcProgress.setText(timeLeftFormatted);
     }
 }

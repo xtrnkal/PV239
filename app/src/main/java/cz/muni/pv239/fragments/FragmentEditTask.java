@@ -1,6 +1,5 @@
 package cz.muni.pv239.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,11 +12,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import cz.muni.pv239.MainActivity;
 import cz.muni.pv239.R;
-import cz.muni.pv239.fragments.FragmentTaskList;
 
 import static cz.muni.pv239.MainActivity.*;
 
@@ -43,6 +39,7 @@ public class FragmentEditTask extends Fragment {
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         linearLayout.setLayoutParams(layoutParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setBackgroundColor(getResources().getColor(R.color.colorwhite));
 
         final EditText text = new EditText(getActivity());
         if (exists) {
@@ -60,16 +57,18 @@ public class FragmentEditTask extends Fragment {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (exists) {
-                    dataManager.editTask(nameFin, text.getText().toString(), getContext());
-                } else {
-                    dataManager.addTask(text.getText().toString(), getContext());
+                if (!text.getText().toString().isEmpty()) {
+                    if (exists) {
+                        dataManager.editTask(nameFin, text.getText().toString(), getContext());
+                    } else {
+                        dataManager.addTask(text.getText().toString(), getContext());
+                    }
+
+                    hideKeyboard(getActivity());
+
+                    linearLayout.removeAllViews();
+                    getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
                 }
-
-                hideKeyboard(getActivity());
-
-                linearLayout.removeAllViews();
-                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
             }
         });
         linearLayout.addView(btnCreate);

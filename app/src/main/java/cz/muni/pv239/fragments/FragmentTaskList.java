@@ -67,8 +67,6 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         ArrayList<Task> tasks = dataManager.getTasks();
         if (!tasks.isEmpty()) {
             for (final Task task : tasks) {
-                System.out.println("Tady je nejaky task:" + task.getName());
-
                 LinearLayout taskLayout = new LinearLayout(getActivity());
                 taskLayout.setOrientation(LinearLayout.HORIZONTAL);
                 taskLayout.setBackgroundResource(R.color.colorwhite);
