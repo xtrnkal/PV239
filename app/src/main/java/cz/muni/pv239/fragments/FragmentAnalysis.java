@@ -1,5 +1,6 @@
 package cz.muni.pv239.fragments;
 
+import android.graphics.Rect;
 import android.icu.util.MeasureUnit;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ import java.util.Map;
 
 import javax.xml.transform.Templates;
 
+import cz.muni.pv239.MyValueFormatter;
 import cz.muni.pv239.R;
 import cz.muni.pv239.Statistics;
 
@@ -45,42 +49,35 @@ public class FragmentAnalysis extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.analysis_fragment, container, false);
-/*
-        LinearLayout ll = new LinearLayout(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        ll.setLayoutParams(params);
-*/
+
+        Statistics stats = dataManager.getCurrentStatistics();
+
         PieChart chart = view.findViewById(R.id.pie_chart);
         chart.setUsePercentValues(true);
         chart.setHoleRadius(40f);
         chart.setTransparentCircleRadius(40f);
 
+        chart.setDescription(null);    // Hide the description
+        chart.getLegend().setEnabled(false);
+        chart.setEntryLabelTextSize(0f);
 
         List<PieEntry> values = new ArrayList<>();
-        values.add(new PieEntry(40f, "a"));
-        values.add(new PieEntry(60f, "b"));
-
-
-        PieDataSet set = new PieDataSet(values, "");
-        set.setColors(ColorTemplate.COLORFUL_COLORS);
-        set.setValueTextSize(20);
-
-        PieData data = new PieData(set);
-        chart.setData(data);
-
-
         TextView text = view.findViewById(R.id.pie_chart_name);
         text.setText("MARCH 2019");
 
-
         TableLayout tl = view.findViewById(R.id.pie_chart_table);
         tl.setShrinkAllColumns(false);
+        PieDataSet dataSet = new PieDataSet(values, "");
 
-
-        Statistics stats = dataManager.getCurrentStatistics();
         if (stats != null && !stats.getValues().isEmpty()) {
-
+            int i = 0;
             for (Map.Entry<String, Integer> entry : stats.getValues().entrySet()) {
+                //chart stats
+                values.add(new PieEntry(entry.getValue(), entry.getKey()));
+                //dataSet.addEntry(new PieEntry(entry.getValue(), entry.getKey()));
+                //dataSet.getColor(i);
+
+                // table rows
                 String key = entry.getKey();
                 Integer value = entry.getValue();
                 if (value < 1) {
@@ -105,10 +102,22 @@ public class FragmentAnalysis extends Fragment {
 
                 row.setGravity(Gravity.CENTER);
                 tl.addView(row);
+                i++;
             }
 
         }
 
+
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setValueTextSize(20);
+        dataSet.setValueFormatter(new MyValueFormatter());
+
+        PieData data = new PieData(dataSet);
+        //data.setValueTextSize(0f);
+        //data.setValueFormatter(new MyValueFormatter());
+        chart.setData(data);
+
+/*
         TableRow row = new TableRow(getContext());
         row.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         row.setGravity(Gravity.CENTER);
@@ -138,7 +147,7 @@ public class FragmentAnalysis extends Fragment {
         row2.addView(text1);
         row2.addView(text2);
         tl.addView(row2);
-
+*/
 
 
         /*ll.addView(chart);
