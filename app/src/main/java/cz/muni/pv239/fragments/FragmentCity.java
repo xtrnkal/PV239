@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import cz.muni.pv239.R;
@@ -32,10 +37,48 @@ public class FragmentCity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.city_fragment, container, false);
+
         createRowOfBuildings(R.id.frame_huge, BuildingType.HUGE, R.drawable.huge, 10);
         createRowOfBuildings(R.id.frame_large, BuildingType.LARGE, R.drawable.large, 15);
         createRowOfBuildings(R.id.frame_medium, BuildingType.MEDIUM, R.drawable.medium, 20);
         createRowOfBuildings(R.id.frame_small, BuildingType.SMALL, R.drawable.small, 20);
+
+        Statistics stats = dataManager.getCurrentStatistics();
+        TextView text = view.findViewById(R.id.city_name);
+        text.setText(stats.getMonth() + " "+ stats.getYear());
+
+        TableLayout tl = view.findViewById(R.id.city_table);
+        tl.setShrinkAllColumns(false);
+
+        if (stats != null && !stats.getValues().isEmpty()) {
+            int i = 0;
+            for (Map.Entry<BuildingType, Integer> entry : stats.getCity().entrySet()) {
+                // table rows
+                BuildingType key = entry.getKey();
+                Integer value = entry.getValue();
+
+                TableRow row = new TableRow(getContext());
+                TextView text1 = new TextView(getContext());
+                text1.setText(key.toString());
+                text1.setTextSize(20);
+                text1.setTextColor(getResources().getColor(R.color.colorwhite));
+
+                TextView text2 = new TextView(getContext());
+                text2.setText(value.toString());
+                text2.setTextSize(20);
+                text2.setTextColor(getResources().getColor(R.color.colorwhite));
+
+                row.addView(text1);
+                row.addView(text2);
+
+                row.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                row.setGravity(Gravity.CENTER);
+                tl.addView(row);
+                i++;
+            }
+
+        }
 
         return view;
     }
