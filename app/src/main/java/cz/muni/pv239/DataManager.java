@@ -96,6 +96,12 @@ public class DataManager {
         saveTasks(context);
     }
 
+    public void deleteTask(String name, Context context) {
+        Task task = new Task(name);
+        tasks.remove(tasks.indexOf(task));
+        saveTasks(context);
+    }
+
     public void editStatistics(String name, Integer value, Context context) {
 
         if (statistics.get(current) != null) {

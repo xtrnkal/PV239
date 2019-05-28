@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import cz.muni.pv239.R;
 
@@ -26,7 +27,7 @@ public class FragmentEditTask extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.new_task_fragment, container, false);
+        view = inflater.inflate(R.layout.task_fragment, container, false);
         String name = null;
         if (this.getArguments()!= null) {
             name = this.getArguments().getString("name");
@@ -41,17 +42,41 @@ public class FragmentEditTask extends Fragment {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundColor(getResources().getColor(R.color.colorwhite));
 
+        TextView headline = new TextView(getActivity());
+        headline.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        headline.setLinkTextColor(getResources().getColor(R.color.dark_purple));
+        headline.setPadding(0,15,0,15);
+        headline.setTextSize(30f);
+
+        if (exists) {
+            headline.setText("Edit task");
+        } else {
+            headline.setText("Create new task");
+        }
+
+        linearLayout.addView(headline);
+
+
         final EditText text = new EditText(getActivity());
         if (exists) {
             text.setText(name);
         }
         linearLayout.addView(text);
 
+        //hack pro background
+        Button justBackground = (Button) view.findViewById(R.id.button1234);
+
         Button btnCreate = new Button(getActivity());
+        btnCreate.setBackground(justBackground.getBackground());
+        btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
+        btnCreate.setTextSize(20f);
+        btnCreate.setElegantTextHeight(true);
+        btnCreate.setPadding(0,30,0,30);
+
         if (exists) {
             btnCreate.setText("Save");
         } else {
-            btnCreate.setText("Create new task");
+            btnCreate.setText("Create");
         }
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +98,33 @@ public class FragmentEditTask extends Fragment {
         });
         linearLayout.addView(btnCreate);
 
+        Button btnDelete = new Button(getActivity());
+        btnDelete.setText("Delete task");
+        btnDelete.setBackground(justBackground.getBackground());
+        btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
+        btnDelete.setTextSize(20f);
+        btnDelete.setElegantTextHeight(true);
+        btnDelete.setPadding(0,30,0,30);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideKeyboard(getActivity());
+
+                dataManager.deleteTask(nameFin, getContext());
+                linearLayout.removeAllViews();
+                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
+            }
+        });
+        linearLayout.addView(btnDelete);
+
         Button btnBack = new Button(getActivity());
         btnBack.setText("Go back to list");
+        btnBack.setBackground(justBackground.getBackground());
+        btnBack.setTextColor(getResources().getColor(R.color.dark_purple));
+        btnBack.setTextSize(20f);
+        btnBack.setElegantTextHeight(true);
+        btnBack.setPadding(0,30,0,30);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +136,7 @@ public class FragmentEditTask extends Fragment {
         linearLayout.addView(btnBack);
 
         container.addView(linearLayout);
-        view = inflater.inflate(R.layout.task_list_fragment, container, false);
+
         return view;
     }
 
