@@ -15,9 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -45,7 +43,7 @@ public class FragmentCity extends Fragment {
 
         Statistics stats = dataManager.getCurrentStatistics();
         TextView text = view.findViewById(R.id.city_name);
-        text.setText(stats.getMonth().getMonthName(getContext()) + " "+ stats.getYear());
+        text.setText(stats.getMonth().getMonthName(getContext()) + " " + stats.getYear());
 
         TableLayout tl = view.findViewById(R.id.city_table);
         tl.setShrinkAllColumns(false);
@@ -124,7 +122,7 @@ public class FragmentCity extends Fragment {
 
         while (count != 0) {
             int n = rand.nextInt(50);
-            if (array[((count * n) % size)] != 1 ){
+            if (array[((count * n) % size)] != 1) {
                 array[((count * n) % size)] = 1;
                 count--;
             }

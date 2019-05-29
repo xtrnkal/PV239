@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/analysis_container"
@@ -53,14 +53,15 @@
         android:layout_marginRight="70dp">
 
     </com.github.mikephil.charting.charts.PieChart>
+
     <TableLayout
+        android:id="@+id/pie_chart_table"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
-
         android:layout_gravity="center"
+
+
         android:gravity="center"
-
-
-        android:textAlignment="center"
-        android:id="@+id/pie_chart_table"></TableLayout>
+        android:textAlignment="center"></TableLayout>
 </LinearLayout>

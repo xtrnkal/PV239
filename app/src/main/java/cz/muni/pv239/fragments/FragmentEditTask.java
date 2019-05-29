@@ -16,7 +16,8 @@ import android.widget.TextView;
 
 import cz.muni.pv239.R;
 
-import static cz.muni.pv239.MainActivity.*;
+import static cz.muni.pv239.MainActivity.BUTTON_HEIGHT;
+import static cz.muni.pv239.MainActivity.dataManager;
 
 public class FragmentEditTask extends Fragment {
     View view;
@@ -24,12 +25,23 @@ public class FragmentEditTask extends Fragment {
     public FragmentEditTask() {
     }
 
+    public static void hideKeyboard(FragmentActivity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.task_fragment, container, false);
         String name = null;
-        if (this.getArguments()!= null) {
+        if (this.getArguments() != null) {
             name = this.getArguments().getString("name");
         }
         final boolean exists = (name != null);
@@ -44,7 +56,7 @@ public class FragmentEditTask extends Fragment {
         TextView headline = new TextView(getActivity());
         headline.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         headline.setLinkTextColor(getResources().getColor(R.color.dark_purple));
-        headline.setPadding(0,15,0,15);
+        headline.setPadding(0, 15, 0, 15);
         headline.setTextSize(30f);
 
         if (exists) {
@@ -63,7 +75,7 @@ public class FragmentEditTask extends Fragment {
         linearLayout.addView(text);
 
         //hack pro background
-        Button justBackground = (Button) view.findViewById(R.id.button1234);
+        Button justBackground = view.findViewById(R.id.button1234);
 
         Button btnCreate = new Button(getActivity());
         btnCreate.setBackground(justBackground.getBackground());
@@ -71,7 +83,7 @@ public class FragmentEditTask extends Fragment {
         btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
         btnCreate.setTextSize(20f);
         btnCreate.setElegantTextHeight(true);
-        btnCreate.setPadding(0,30,0,30);
+        btnCreate.setPadding(0, 30, 0, 30);
 
         if (exists) {
             btnCreate.setText(R.string.save);
@@ -127,7 +139,7 @@ public class FragmentEditTask extends Fragment {
         btnBack.setTextColor(getResources().getColor(R.color.dark_purple));
         btnBack.setTextSize(20f);
         btnBack.setElegantTextHeight(true);
-        btnBack.setPadding(0,30,0,30);
+        btnBack.setPadding(0, 30, 0, 30);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,16 +153,5 @@ public class FragmentEditTask extends Fragment {
         container.addView(linearLayout);
 
         return view;
-    }
-
-    public static void hideKeyboard(FragmentActivity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);
-        //Find the currently focused view, so we can grab the correct window token from it.
-        View view = activity.getCurrentFocus();
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if (view == null) {
-            view = new View(activity);
-        }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

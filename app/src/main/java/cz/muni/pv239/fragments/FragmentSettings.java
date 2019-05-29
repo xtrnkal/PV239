@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import cz.muni.pv239.R;
@@ -25,7 +24,7 @@ public class FragmentSettings extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.settings_fragment, container, false);
-        Button delete = (Button) view.findViewById(R.id.delete_all_data);
+        Button delete = view.findViewById(R.id.delete_all_data);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

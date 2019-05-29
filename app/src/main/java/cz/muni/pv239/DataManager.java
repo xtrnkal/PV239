@@ -1,26 +1,16 @@
 package cz.muni.pv239;
 
 import android.content.Context;
-import android.renderscript.ScriptIntrinsicYuvToRGB;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
-import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.TimeZone;
-import java.util.logging.FileHandler;
 
 import cz.muni.pv239.enums.BuildingType;
 import cz.muni.pv239.enums.Month;
@@ -59,8 +49,6 @@ public class DataManager {
 
         if (statistics.isEmpty()) {
             loadData(context);
-        } else {
-            System.out.println("------------- STATS not empty --------------" + statisticsToString());
         }
 
         if (statistics.get(current) == null) {
@@ -70,12 +58,11 @@ public class DataManager {
     }
 
     private void loadData(Context context) {
-        System.out.println(statistics.toString());
         loadTasks(context);
         loadStatistics(context);
     }
 
-    public String getPreviousName (String name) {
+    public String getPreviousName(String name) {
         Month m = statistics.get(name).getMonth();
         int y = statistics.get(name).getYear();
 
@@ -95,7 +82,7 @@ public class DataManager {
         return targetM.toString() + targetY;
     }
 
-    public String getNextName (String name) {
+    public String getNextName(String name) {
         Month m = statistics.get(name).getMonth();
         int y = statistics.get(name).getYear();
 
@@ -141,7 +128,7 @@ public class DataManager {
 
     public void deleteTask(String name, Context context) {
         Task task = new Task(name);
-        tasks.remove(tasks.indexOf(task));
+        tasks.remove(task);
         saveTasks(context);
     }
 
@@ -153,7 +140,6 @@ public class DataManager {
         }
     }
 
-
     public void saveTasks(Context context) {
         try {
             FileOutputStream out = context.openFileOutput(TASKS_FILE, Context.MODE_PRIVATE);
@@ -164,14 +150,13 @@ public class DataManager {
                 out.write(separator);
             }
             out.close();
-        } catch (IOException  e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     private void loadTasks(Context context) {
-        String loadedTasks = new String();
+        String loadedTasks = "";
         try {
             FileInputStream in = context.openFileInput(TASKS_FILE);
             int size = in.available();
@@ -187,7 +172,7 @@ public class DataManager {
     }
 
     private void loadStatistics(Context context) {
-        String loadedStats = new String();
+        String loadedStats = "";
         try {
             FileInputStream in = context.openFileInput(STATISTICS_FILE);
             int size = in.available();
@@ -210,7 +195,7 @@ public class DataManager {
         int position = 0;
         Statistics stats = new Statistics(0, Month.JANUARY);
         for (String l : list) {
-            switch(position) {
+            switch (position) {
                 case 0:
                     //{APRIL2019=YEAR=2019
                     int i = l.indexOf("YEAR");
@@ -242,7 +227,7 @@ public class DataManager {
                     String[] cityParts = l.split(", ");
                     for (String p : cityParts) {
                         String[] nameVal = p.split("=");
-                        stats.addMoreBuildings(BuildingType.valueOf(nameVal[0]),  Integer.parseInt(nameVal[1]));
+                        stats.addMoreBuildings(BuildingType.valueOf(nameVal[0]), Integer.parseInt(nameVal[1]));
                     }
 
                     statistics.put((stats.getMonth().toString() + stats.getYear()), stats);
@@ -271,7 +256,7 @@ public class DataManager {
             byte[] strToBytes = tmp.getBytes();
             out.write(strToBytes);
             out.close();
-        } catch (IOException  e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -284,29 +269,21 @@ public class DataManager {
         return statistics.get(current);
     }
 
-    public void setStatistics(HashMap<String, Statistics> statistics) {
-        this.statistics = statistics;
-    }
-
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public void deteleAllData(Context context){
+    public void deteleAllData(Context context) {
         try {
-            FileOutputStream tasks = context.openFileOutput(TASKS_FILE, context.MODE_PRIVATE);
+            FileOutputStream tasks = context.openFileOutput(TASKS_FILE, Context.MODE_PRIVATE);
             tasks.close();
 
-            FileOutputStream statistics = context.openFileOutput(STATISTICS_FILE, context.MODE_PRIVATE);
+            FileOutputStream statistics = context.openFileOutput(STATISTICS_FILE, Context.MODE_PRIVATE);
             statistics.close();
 
             this.statistics.clear();
             this.tasks.clear();
-        } catch (IOException  e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

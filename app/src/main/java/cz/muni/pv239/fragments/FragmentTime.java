@@ -22,11 +22,8 @@ import static cz.muni.pv239.MainActivity.dataManager;
 import static java.lang.Integer.parseInt;
 
 public class FragmentTime extends Fragment {
-    View view;
-
     private static final long START_TIME_IN_MILLIS = 20 * 60 * 1000;
-
-    private TextView mTextViewCountDown;
+    View view;
     private Button mButtonStartReset;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
@@ -49,20 +46,19 @@ public class FragmentTime extends Fragment {
         view = inflater.inflate(R.layout.time_fragment, container, false);
 
         taskName = null;
-        if (this.getArguments()!= null) {
+        if (this.getArguments() != null) {
             taskName = this.getArguments().getString("name");
         }
 
-        mTimeTask = (TextView) view.findViewById(R.id.time_task);
+        mTimeTask = view.findViewById(R.id.time_task);
         mTimeTask.setText(taskName);
-        mTextViewCountDown = mTimeTask;
 
-        mSeekArc = (SeekArc) view.findViewById(R.id.seek_arc);
-        mSeekArcProgress = (TextView) view.findViewById(R.id.seek_arc_progress);
+        mSeekArc = view.findViewById(R.id.seek_arc);
+        mSeekArcProgress = view.findViewById(R.id.seek_arc_progress);
         mSeekArc.setOnSeekArcChangeListener(new OnSeekArcChangeListener() {
             @Override
             public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
-                mSeekArcProgress.setText(String.valueOf(i) + ":00");
+                mSeekArcProgress.setText(i + ":00");
             }
 
             @Override
@@ -119,32 +115,22 @@ public class FragmentTime extends Fragment {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                //mCountDownTimer.cancel();
                 mButtonStartReset.setText(R.string.start_timer);
-                //mButtonStartReset.setVisibility(View.VISIBLE);
                 mSeekArc.setVisibility(View.VISIBLE);
-                mSeekArcProgress.setText(Long.toString(START_TIME_IN_MILLIS/(60*1000)) + ":00");
-                dataManager.editStatistics(taskName, (int)(mTimeStartInMillis/(60*1000)), getContext());
+                mSeekArcProgress.setText(START_TIME_IN_MILLIS / (60 * 1000) + ":00");
+                dataManager.editStatistics(taskName, (int) (mTimeStartInMillis / (60 * 1000)), getContext());
             }
         }.start();
 
         mTimerRunning = true;
         mButtonStartReset.setText(R.string.reset_timer);
     }
-    /*
-    private void pauseTimer() {
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-        mButtonStartReset.setText("Start");
-    }
-    */
 
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         mCountDownTimer.cancel();
         updateCountDownText();
         mTimerRunning = false;
-        //mButtonStartReset.setVisibility(View.VISIBLE);
         mButtonStartReset.setText(R.string.start_timer);
     }
 

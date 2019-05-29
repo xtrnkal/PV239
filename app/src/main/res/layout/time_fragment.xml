@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:seekarc="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/time_fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorwhite"
     android:gravity="center"
-    android:background="@color/colorwhite">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="453dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/time_task"
@@ -28,14 +28,15 @@
         android:id="@+id/seekArcContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
-    <TextView
-        android:id="@+id/seek_arc_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:text="20:00"
-        android:textSize="40sp" />
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/seek_arc_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:text="20:00"
+            android:textSize="40sp" />
 
         <com.triggertrap.seekarc.SeekArc
             android:id="@+id/seek_arc"
@@ -58,16 +59,16 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_start"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/light_blue"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:text="@string/start_timer"
-                android:elegantTextHeight="true"/>
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/light_blue"
+            android:elegantTextHeight="true"
+            android:gravity="center"
+            android:text="@string/start_timer"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/btn_back_to_list"
@@ -75,10 +76,10 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/light_blue"
+            android:elegantTextHeight="true"
             android:gravity="center"
-            android:textSize="20dp"
             android:text="@string/go_back"
-            android:elegantTextHeight="true"/>
+            android:textSize="20dp" />
 
     </LinearLayout>
 

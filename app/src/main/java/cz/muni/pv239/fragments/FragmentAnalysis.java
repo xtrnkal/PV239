@@ -1,7 +1,5 @@
 package cz.muni.pv239.fragments;
 
-import android.graphics.Rect;
-import android.icu.util.MeasureUnit;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,21 +14,15 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.xml.transform.Templates;
 
 import cz.muni.pv239.MyValueFormatter;
 import cz.muni.pv239.R;
@@ -52,11 +44,10 @@ public class FragmentAnalysis extends Fragment {
 
         //like MARCH2019
         String name = null;
-        if (this.getArguments()!= null) {
+        if (this.getArguments() != null) {
             name = this.getArguments().getString("name");
         }
         final boolean exists = (name != null);
-        final String nameFin = name;
 
         final Statistics stats;
         if (exists) {
@@ -110,7 +101,7 @@ public class FragmentAnalysis extends Fragment {
                 text1.setTextSize(20);
 
                 TextView text2 = new TextView(getContext());
-                text2.setText(value.toString());
+                text2.setText(value.toString() + " min");
                 text2.setTextSize(20);
 
                 System.out.println(key + " " + value.toString());
@@ -127,55 +118,12 @@ public class FragmentAnalysis extends Fragment {
 
         }
 
-
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         dataSet.setValueTextSize(20);
         dataSet.setValueFormatter(new MyValueFormatter());
 
         PieData data = new PieData(dataSet);
-        //data.setValueTextSize(0f);
-        //data.setValueFormatter(new MyValueFormatter());
         chart.setData(data);
-
-/*
-        TableRow row = new TableRow(getContext());
-        row.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        row.setGravity(Gravity.CENTER);
-        TextView text1 = new TextView(getContext());
-        text1.setText("AHOJ");
-        text1.setTextSize(20);
-        TextView text2 = new TextView(getContext());
-        text2.setText("30");
-        text2.setTextSize(20);
-
-        row.addView(text1);
-        row.addView(text2);
-        tl.addView(row);
-
-        TableRow row2 = new TableRow(getContext());
-        //row2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        row2.setGravity(Gravity.CENTER);
-        text1 = new TextView(getContext());
-        text1.setText("NEI OS ");
-        text1.setTextSize(20);
-        text2 = new TextView(getContext());
-        text2.setText("456");
-        text2.setTextSize(20);
-
-
-
-        row2.addView(text1);
-        row2.addView(text2);
-        tl.addView(row2);
-*/
-
-
-        /*ll.addView(chart);
-        return ll;*/
-/*
-        Bundle b = this.getArguments();
-        statistics = (HashMap<String, Integer>) b.getSerializable("statistics");
-*/
 
         String previousText = dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
 
@@ -190,7 +138,6 @@ public class FragmentAnalysis extends Fragment {
                 public void onClick(View v) {
                     Bundle b = new Bundle();
                     b.putString("name", dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
-                    //System.out.println(task.getName());
                     FragmentAnalysis fragment = new FragmentAnalysis();
                     fragment.setArguments(b);
                     ll.removeAllViews();
@@ -211,7 +158,6 @@ public class FragmentAnalysis extends Fragment {
                 public void onClick(View v) {
                     Bundle b = new Bundle();
                     b.putString("name", dataManager.getNextName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
-                    //System.out.println(task.getName());
                     FragmentAnalysis fragment = new FragmentAnalysis();
                     fragment.setArguments(b);
                     ll.removeAllViews();
@@ -219,8 +165,6 @@ public class FragmentAnalysis extends Fragment {
                 }
             });
         }
-
-
 
 
         return view;

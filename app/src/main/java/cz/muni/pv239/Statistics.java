@@ -24,12 +24,12 @@ public class Statistics {
     /*
      * time is in minutes
      */
-    public void addValue (String name, Integer time) {
+    public void addValue(String name, Integer time) {
         Integer val = values.get(name);
         if (val == null) {
             values.put(name, time);
         } else {
-            values.put(name, time+val);
+            values.put(name, time + val);
         }
 
         if (time < 10) {
@@ -43,12 +43,12 @@ public class Statistics {
         }
     }
 
-    public void addTaskValue (String name, Integer time) {
+    public void addTaskValue(String name, Integer time) {
         Integer val = values.get(name);
         if (val == null) {
             values.put(name, time);
         } else {
-            values.put(name, time+val);
+            values.put(name, time + val);
         }
     }
 
@@ -58,7 +58,7 @@ public class Statistics {
     }
 
     public void addMoreBuildings(BuildingType type, int count) {
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             addBuilding(type);
         }
     }
@@ -67,16 +67,8 @@ public class Statistics {
         return values;
     }
 
-    public void setValues(HashMap<String, Integer> values) {
-        this.values = values;
-    }
-
     public HashMap<BuildingType, Integer> getCity() {
         return city;
-    }
-
-    public void setCity(HashMap<BuildingType, Integer> city) {
-        this.city = city;
     }
 
     public int getYear() {
@@ -97,14 +89,6 @@ public class Statistics {
 
     @Override
     public String toString() {
-        return  "YEAR=" + year + ";MONTH=" + month + ";VALUES=" + values.toString() + ";CITY=" + city.toString();
-    }
-
-    public void deleteAllValues() {
-        this.values.clear();
-    }
-
-    public void clearCity() {
-        this.city.clear();
+        return "YEAR=" + year + ";MONTH=" + month + ";VALUES=" + values.toString() + ";CITY=" + city.toString();
     }
 }

@@ -1,17 +1,10 @@
 package cz.muni.pv239;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-
-import cz.muni.pv239.enums.BuildingType;
-import cz.muni.pv239.enums.Month;
 import cz.muni.pv239.fragments.FragmentAnalysis;
 import cz.muni.pv239.fragments.FragmentCity;
 import cz.muni.pv239.fragments.FragmentSettings;
@@ -26,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
     public MainActivity() {
 
     }
@@ -39,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        viewPager = findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.AddFragment(new FragmentTask(), "clock");
@@ -49,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        tabLayout = findViewById(R.id.tablayout_id);
 
         tabLayout.setupWithViewPager(viewPager);
 

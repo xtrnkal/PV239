@@ -1,16 +1,10 @@
 package cz.muni.pv239.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.Px;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,7 +15,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,9 +25,8 @@ import cz.muni.pv239.Task;
 import static cz.muni.pv239.MainActivity.BUTTON_HEIGHT;
 import static cz.muni.pv239.MainActivity.dataManager;
 
-public class FragmentTaskList extends Fragment implements View.OnClickListener {
+public class FragmentTaskList extends Fragment {
     View view;
-    LinearLayout ll;
 
     public FragmentTaskList() {
     }
@@ -67,12 +59,10 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         headline.setText(R.string.h_tasks);
         headline.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         headline.setLinkTextColor(R.color.dark_purple);
-        headline.setPadding(0,15,0,15);
+        headline.setPadding(0, 15, 0, 15);
         headline.setTextSize(30f);
 
         linearLayout.addView(headline);
-
-        LayoutParams buttonParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         ArrayList<Task> tasks = dataManager.getTasks();
         if (!tasks.isEmpty()) {
@@ -101,7 +91,6 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
                     public void onClick(View v) {
                         Bundle b = new Bundle();
                         b.putString("name", task.getName());
-                        //System.out.println(task.getName());
                         FragmentTime fTime = new FragmentTime();
                         fTime.setArguments(b);
                         linearLayout.removeAllViews();
@@ -117,7 +106,6 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
                     public void onClick(View v) {
                         Bundle b = new Bundle();
                         b.putString("name", task.getName());
-
                         FragmentEditTask fTask = new FragmentEditTask();
                         fTask.setArguments(b);
                         linearLayout.removeAllViews();
@@ -141,11 +129,10 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         line.setLayoutParams(lineParams);
         linearLayout.addView(line);
 
-        Button justBackground = (Button) view.findViewById(R.id.button123);
+        Button justBackground = view.findViewById(R.id.button123);
 
         Button addNew = new Button(getActivity());
         addNew.setText(R.string.create_new);
-
 
 
         addNew.setBackground(justBackground.getBackground());
@@ -160,38 +147,10 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
             }
         });
         addNew.setElegantTextHeight(true);
-        addNew.setPadding(0,30,0,30);
+        addNew.setPadding(0, 30, 0, 30);
 
         linearLayout.addView(addNew);
 
         return linearLayout;
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView(view);
-    }
-
-    private void initView(View view) {
-        //Button brain1 = (Button) view.findViewById(R.id.brain1);
-        //brain1.setOnClickListener(this);
-        //Button btnNew = (Button) view.findViewById(R.id.btn_add_new_task);
-        //btnNew.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            //case R.id.brain:
-            //    getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTime()).commit();
-            //    break;
-            /*case R.id.btn_add_new_task:
-                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentEditTask()).commit();
-                break;*/
-        }
-
-    }
-
 }
