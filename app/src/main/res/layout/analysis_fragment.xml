@@ -5,13 +5,45 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/analysis_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pie_chart_name"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textColor="@color/dark_purple"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <TextView
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:minWidth="50dp"
+            android:text="&lt;"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/pie_chart_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:textColor="@color/dark_purple"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:minWidth="50dp"
+            android:text="&gt;"
+            android:textSize="40dp" />
+    </LinearLayout>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pie_chart"

@@ -19,6 +19,7 @@
 
     <string name="about_text1">This application was created for class PV239.</string>
     <string name="about_text2">Anna Trnkalová, FI MUNI Spring 2019</string>
+    <string name="nothing">You have no data to be shown.</string>
 
     <string name="january">JANUARY</string>
     <string name="february">FEBRUARY</string>

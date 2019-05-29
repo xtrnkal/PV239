@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -72,6 +73,48 @@ public class DataManager {
         System.out.println(statistics.toString());
         loadTasks(context);
         loadStatistics(context);
+    }
+
+    public String getPreviousName (String name) {
+        Month m = statistics.get(name).getMonth();
+        int y = statistics.get(name).getYear();
+
+        Month targetM;
+        int targetY;
+
+        if (m.ordinal() == 0) {
+            targetM = Month.DECEMBER;
+            targetY = y - 1;
+        } else {
+            targetM = (Month.values())[(m.ordinal() - 1)];
+            targetY = y;
+        }
+        if (statistics.get(targetM.toString() + targetY) == null) {
+            return "";
+        }
+        return targetM.toString() + targetY;
+    }
+
+    public String getNextName (String name) {
+        Month m = statistics.get(name).getMonth();
+        int y = statistics.get(name).getYear();
+
+        Month targetM;
+        int targetY;
+
+        if (m.ordinal() == 11) {
+            targetM = Month.JANUARY;
+            targetY = y + 1;
+        } else {
+            targetM = (Month.values())[(m.ordinal() + 1)];
+            targetY = y;
+        }
+
+        if (statistics.get(targetM.toString() + targetY) == null) {
+            return "";
+        }
+
+        return targetM.toString() + targetY;
     }
 
     public void addTask(String name, Context context) {

@@ -47,10 +47,30 @@ public class FragmentAnalysis extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.analysis_fragment, container, false);
 
-        Statistics stats = dataManager.getCurrentStatistics();
+        //like MARCH2019
+        String name = null;
+        if (this.getArguments()!= null) {
+            name = this.getArguments().getString("name");
+        }
+        final boolean exists = (name != null);
+        final String nameFin = name;
+
+        final Statistics stats;
+        if (exists) {
+            stats = dataManager.getStatistics().get(name);
+        } else {
+            stats = dataManager.getCurrentStatistics();
+        }
+
+        if (stats == null) {
+            return view;
+        }
+
+        final LinearLayout ll = view.findViewById(R.id.analysis_container);
+
 
         PieChart chart = view.findViewById(R.id.pie_chart);
         chart.setUsePercentValues(true);
@@ -59,11 +79,11 @@ public class FragmentAnalysis extends Fragment {
 
         chart.setDescription(null);    // Hide the description
         chart.getLegend().setEnabled(false);
-        chart.setEntryLabelTextSize(0f);
+        //chart.setEntryLabelTextSize(0f);
 
         List<PieEntry> values = new ArrayList<>();
         TextView text = view.findViewById(R.id.pie_chart_name);
-        text.setText(stats.getMonth().getMonthName(getContext()) + " "+ stats.getYear());
+        text.setText(stats.getMonth().getMonthName(getContext()) + " " + stats.getYear());
 
         TableLayout tl = view.findViewById(R.id.pie_chart_table);
         tl.setShrinkAllColumns(false);
@@ -156,6 +176,53 @@ public class FragmentAnalysis extends Fragment {
         Bundle b = this.getArguments();
         statistics = (HashMap<String, Integer>) b.getSerializable("statistics");
 */
+
+        String previousText = dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
+
+        TextView previous = view.findViewById(R.id.previous);
+
+        if (previousText.isEmpty()) {
+            previous.setVisibility(View.INVISIBLE);
+        } else {
+            previous.setVisibility(View.VISIBLE);
+            previous.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle b = new Bundle();
+                    b.putString("name", dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
+                    //System.out.println(task.getName());
+                    FragmentAnalysis fragment = new FragmentAnalysis();
+                    fragment.setArguments(b);
+                    ll.removeAllViews();
+                    getFragmentManager().beginTransaction().replace(R.id.analysis_container, fragment).commit();
+                }
+            });
+        }
+
+        String nextText = dataManager.getNextName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
+        TextView next = view.findViewById(R.id.next);
+
+        if (nextText.isEmpty()) {
+            next.setVisibility(View.INVISIBLE);
+        } else {
+            next.setVisibility(View.VISIBLE);
+            previous.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle b = new Bundle();
+                    b.putString("name", dataManager.getNextName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
+                    //System.out.println(task.getName());
+                    FragmentAnalysis fragment = new FragmentAnalysis();
+                    fragment.setArguments(b);
+                    ll.removeAllViews();
+                    getFragmentManager().beginTransaction().replace(R.id.analysis_container, fragment).commit();
+                }
+            });
+        }
+
+
+
+
         return view;
     }
 }

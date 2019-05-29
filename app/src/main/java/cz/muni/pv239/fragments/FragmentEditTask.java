@@ -31,7 +31,6 @@ public class FragmentEditTask extends Fragment {
         String name = null;
         if (this.getArguments()!= null) {
             name = this.getArguments().getString("name");
-            System.out.println(name);
         }
         final boolean exists = (name != null);
         final String nameFin = name;
