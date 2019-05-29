@@ -68,6 +68,7 @@ public class FragmentEditTask extends Fragment {
 
         Button btnCreate = new Button(getActivity());
         btnCreate.setBackground(justBackground.getBackground());
+        btnCreate.setHeight(justBackground.getHeight());
         btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
         btnCreate.setTextSize(20f);
         btnCreate.setElegantTextHeight(true);
@@ -99,9 +100,10 @@ public class FragmentEditTask extends Fragment {
         linearLayout.addView(btnCreate);
 
         Button btnDelete = new Button(getActivity());
-        btnDelete.setText("Delete task");
+        btnDelete.setText(R.string.delete);
         btnDelete.setBackground(justBackground.getBackground());
-        btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
+        btnDelete.setHeight(justBackground.getHeight());
+        btnDelete.setTextColor(getResources().getColor(R.color.dark_purple));
         btnDelete.setTextSize(20f);
         btnDelete.setElegantTextHeight(true);
         btnDelete.setPadding(0,30,0,30);
@@ -121,6 +123,7 @@ public class FragmentEditTask extends Fragment {
         Button btnBack = new Button(getActivity());
         btnBack.setText(R.string.go_back);
         btnBack.setBackground(justBackground.getBackground());
+        btnBack.setHeight(justBackground.getHeight());
         btnBack.setTextColor(getResources().getColor(R.color.dark_purple));
         btnBack.setTextSize(20f);
         btnBack.setElegantTextHeight(true);

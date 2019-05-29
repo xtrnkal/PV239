@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -141,10 +142,11 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         Button justBackground = (Button) view.findViewById(R.id.button123);
 
         Button addNew = new Button(getActivity());
-        addNew.setText(R.string.add_new);
+        addNew.setText(R.string.create_new);
         addNew.setBackground(justBackground.getBackground());
         addNew.setTextSize(20f);
         addNew.setTextColor(getResources().getColor(R.color.dark_purple));
+        addNew.setHeight(justBackground.getHeight());
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

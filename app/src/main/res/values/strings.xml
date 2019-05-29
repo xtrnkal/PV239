@@ -15,5 +15,6 @@
     <string name="city">City</string>
     <string name="reset_data">Reset data</string>
     <string name="about">About</string>
+    <string name="reset_data_toast">Data were successfully deleted</string>
 
 </resources>

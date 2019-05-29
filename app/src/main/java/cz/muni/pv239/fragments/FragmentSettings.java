@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cz.muni.pv239.R;
 
@@ -29,6 +30,7 @@ public class FragmentSettings extends Fragment {
             @Override
             public void onClick(View v) {
                 dataManager.deteleAllData(getContext());
+                Toast.makeText(getContext(), R.string.reset_data_toast, Toast.LENGTH_SHORT).show();
             }
         });
         return view;
