@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CStops</string>
+    <string name="h_tasks">Vyber si svůj úkol</string>
+    <string name="add_new">Přidej nový úkol</string>
+    <string name="create_new">Přidání nového úkolu</string>
+    <string name="save">Uložit</string>
+    <string name="create">Vytvořit</string>
+
+    <string name="delete">Smazat úkol</string>
+    <string name="go_back">Zpět na seznam</string>
+    <string name="start_timer">Začít</string>
+    <string name="reset_timer">Resetovat</string>
+
+    <string name="edit">Editace úkolu</string>
+    <string name="city">Město</string>
+    <string name="reset_data">Resetovat data</string>
+    <string name="about">O aplikaci</string>
+</resources>

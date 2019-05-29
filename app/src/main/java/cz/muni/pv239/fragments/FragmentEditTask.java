@@ -49,9 +49,9 @@ public class FragmentEditTask extends Fragment {
         headline.setTextSize(30f);
 
         if (exists) {
-            headline.setText("Edit task");
+            headline.setText(R.string.edit);
         } else {
-            headline.setText("Create new task");
+            headline.setText(R.string.create_new);
         }
 
         linearLayout.addView(headline);
@@ -74,9 +74,9 @@ public class FragmentEditTask extends Fragment {
         btnCreate.setPadding(0,30,0,30);
 
         if (exists) {
-            btnCreate.setText("Save");
+            btnCreate.setText(R.string.save);
         } else {
-            btnCreate.setText("Create");
+            btnCreate.setText(R.string.create);
         }
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +119,7 @@ public class FragmentEditTask extends Fragment {
         linearLayout.addView(btnDelete);
 
         Button btnBack = new Button(getActivity());
-        btnBack.setText("Go back to list");
+        btnBack.setText(R.string.go_back);
         btnBack.setBackground(justBackground.getBackground());
         btnBack.setTextColor(getResources().getColor(R.color.dark_purple));
         btnBack.setTextSize(20f);

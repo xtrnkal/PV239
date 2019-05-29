@@ -120,7 +120,7 @@ public class FragmentTime extends Fragment {
             public void onFinish() {
                 mTimerRunning = false;
                 //mCountDownTimer.cancel();
-                mButtonStartReset.setText("Start");
+                mButtonStartReset.setText(R.string.start_timer);
                 //mButtonStartReset.setVisibility(View.VISIBLE);
                 mSeekArc.setVisibility(View.VISIBLE);
                 mSeekArcProgress.setText(Long.toString(START_TIME_IN_MILLIS/(60*1000)) + ":00");
@@ -129,7 +129,7 @@ public class FragmentTime extends Fragment {
         }.start();
 
         mTimerRunning = true;
-        mButtonStartReset.setText("Reset");
+        mButtonStartReset.setText(R.string.reset_timer);
     }
     /*
     private void pauseTimer() {
@@ -145,7 +145,7 @@ public class FragmentTime extends Fragment {
         updateCountDownText();
         mTimerRunning = false;
         //mButtonStartReset.setVisibility(View.VISIBLE);
-        mButtonStartReset.setText("Start");
+        mButtonStartReset.setText(R.string.start_timer);
     }
 
     private void updateCountDownText() {

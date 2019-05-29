@@ -61,7 +61,7 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         LayoutParams lineParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         TextView headline = new TextView(getActivity());
-        headline.setText("Choose your task");
+        headline.setText(R.string.h_tasks);
         headline.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         headline.setLinkTextColor(R.color.dark_purple);
         headline.setPadding(0,15,0,15);
@@ -141,7 +141,7 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
         Button justBackground = (Button) view.findViewById(R.id.button123);
 
         Button addNew = new Button(getActivity());
-        addNew.setText("Add new task");
+        addNew.setText(R.string.add_new);
         addNew.setBackground(justBackground.getBackground());
         addNew.setTextSize(20f);
         addNew.setTextColor(getResources().getColor(R.color.dark_purple));
