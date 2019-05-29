@@ -25,7 +25,7 @@ public class FragmentSettings extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.settings_fragment, container, false);
-        TextView delete = (TextView) view.findViewById(R.id.delete_all_data);
+        Button delete = (Button) view.findViewById(R.id.delete_all_data);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,4 +16,25 @@
     <string name="reset_data">Resetovat data</string>
     <string name="about">O aplikaci</string>
     <string name="reset_data_toast">Data byla úspěšně smazána</string>
+
+    <string name="about_text1">tato aplikace byla vytvoře v rámci předmětu PV239.</string>
+    <string name="about_text2">Anna Trnkalová, FI MUNI Jaro 2019</string>
+
+    <string name="january">LEDEN</string>
+    <string name="february">ÚNOR</string>
+    <string name="march">BŘEZEN</string>
+    <string name="april">DUBEN</string>
+    <string name="may">KVĚTEN</string>
+    <string name="june">ČERVEN</string>
+    <string name="july">ČERVENEC</string>
+    <string name="august">SRPEN</string>
+    <string name="september">ZÁŘÍ</string>
+    <string name="october">ŘÍJEN</string>
+    <string name="november">LISTOPAD</string>
+    <string name="december">PROSINEC</string>
+
+    <string name="small">DOMEK</string>
+    <string name="medium">STŘDNÍ BUDOVA</string>
+    <string name="large">VYSOKÁ BUDOVA</string>
+    <string name="huge">MRAKODRAP</string>
 </resources>

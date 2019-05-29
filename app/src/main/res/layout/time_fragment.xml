@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:minHeight="10dp"
-            android:text="AAA"
             android:textAlignment="center"
             android:textSize="30sp" />
     </LinearLayout>
@@ -62,14 +61,24 @@
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Start" />
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/light_blue"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="@string/start_timer"
+                android:elegantTextHeight="true"/>
 
         <Button
             android:id="@+id/btn_back_to_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back to list" />
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/light_blue"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="@string/go_back"
+            android:elegantTextHeight="true"/>
 
     </LinearLayout>
 

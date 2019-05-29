@@ -9,41 +9,6 @@
         android:background="@color/colorwhite"
         android:orientation="vertical">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:paddingLeft="30px"
-            android:paddingRight="30px"
-            android:text="@string/reset_data"
-            android:textColor="@color/dark_purple"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/light_blue"
-            android:gravity="center"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button_background"
-            android:backgroundTint="@color/light_blue"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/delete_all_data"
-                android:layout_width="136dp"
-                android:layout_height="59dp"
-                android:layout_weight="1"
-                android:text="@string/reset_data"
-                android:textAlignment="center"
-                android:textColor="@color/dark_purple"
-                android:textSize="30dp"
-                android:layout_marginTop="10dp"/>
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -59,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="This application was created for class PV239 by Anna Trnkalová."
+            android:text="@string/about_text1"
             android:textAlignment="center"
             android:textColor="@color/dark_purple"
             android:textSize="24sp" />
@@ -68,10 +33,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="FI MUNI Spring 2019"
+            android:text="@string/about_text2"
             android:textAlignment="center"
             android:textColor="@color/dark_purple"
             android:textSize="24sp" />
 
+        <Button
+            android:id="@+id/delete_all_data"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:text="@string/reset_data"
+            android:textColor="@color/dark_purple"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/light_blue"
+            android:gravity="center"
+            android:elegantTextHeight="true"/>
     </LinearLayout>
+
 </LinearLayout>

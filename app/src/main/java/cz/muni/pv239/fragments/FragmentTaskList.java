@@ -1,6 +1,7 @@
 package cz.muni.pv239.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -28,6 +29,7 @@ import cz.muni.pv239.R;
 import cz.muni.pv239.R.drawable;
 import cz.muni.pv239.Task;
 
+import static cz.muni.pv239.MainActivity.BUTTON_HEIGHT;
 import static cz.muni.pv239.MainActivity.dataManager;
 
 public class FragmentTaskList extends Fragment implements View.OnClickListener {
@@ -143,10 +145,13 @@ public class FragmentTaskList extends Fragment implements View.OnClickListener {
 
         Button addNew = new Button(getActivity());
         addNew.setText(R.string.create_new);
+
+
+
         addNew.setBackground(justBackground.getBackground());
+        addNew.setHeight(BUTTON_HEIGHT);
         addNew.setTextSize(20f);
         addNew.setTextColor(getResources().getColor(R.color.dark_purple));
-        addNew.setHeight(justBackground.getHeight());
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

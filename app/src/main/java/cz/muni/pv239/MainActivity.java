@@ -20,6 +20,7 @@ import cz.muni.pv239.fragments.FragmentTask;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int BUTTON_HEIGHT;
     public static DataManager dataManager;
 
     private TabLayout tabLayout;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        BUTTON_HEIGHT = (int) (70 * getResources().getDisplayMetrics().density + 0.5f);
+
         dataManager = new DataManager(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

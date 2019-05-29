@@ -63,7 +63,7 @@ public class FragmentAnalysis extends Fragment {
 
         List<PieEntry> values = new ArrayList<>();
         TextView text = view.findViewById(R.id.pie_chart_name);
-        text.setText(stats.getMonth() + " "+ stats.getYear());
+        text.setText(stats.getMonth().getMonthName(getContext()) + " "+ stats.getYear());
 
         TableLayout tl = view.findViewById(R.id.pie_chart_table);
         tl.setShrinkAllColumns(false);

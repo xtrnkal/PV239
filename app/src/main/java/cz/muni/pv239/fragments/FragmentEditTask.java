@@ -68,7 +68,7 @@ public class FragmentEditTask extends Fragment {
 
         Button btnCreate = new Button(getActivity());
         btnCreate.setBackground(justBackground.getBackground());
-        btnCreate.setHeight(justBackground.getHeight());
+        btnCreate.setHeight(BUTTON_HEIGHT);
         btnCreate.setTextColor(getResources().getColor(R.color.dark_purple));
         btnCreate.setTextSize(20f);
         btnCreate.setElegantTextHeight(true);
@@ -99,31 +99,32 @@ public class FragmentEditTask extends Fragment {
         });
         linearLayout.addView(btnCreate);
 
-        Button btnDelete = new Button(getActivity());
-        btnDelete.setText(R.string.delete);
-        btnDelete.setBackground(justBackground.getBackground());
-        btnDelete.setHeight(justBackground.getHeight());
-        btnDelete.setTextColor(getResources().getColor(R.color.dark_purple));
-        btnDelete.setTextSize(20f);
-        btnDelete.setElegantTextHeight(true);
-        btnDelete.setPadding(0,30,0,30);
+        if (exists) {
+            Button btnDelete = new Button(getActivity());
+            btnDelete.setText(R.string.delete);
+            btnDelete.setBackground(justBackground.getBackground());
+            btnDelete.setHeight(BUTTON_HEIGHT);
+            btnDelete.setTextColor(getResources().getColor(R.color.dark_purple));
+            btnDelete.setTextSize(20f);
+            btnDelete.setElegantTextHeight(true);
+            btnDelete.setPadding(0, 30, 0, 30);
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideKeyboard(getActivity());
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    hideKeyboard(getActivity());
 
-                dataManager.deleteTask(nameFin, getContext());
-                linearLayout.removeAllViews();
-                getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
-            }
-        });
-        linearLayout.addView(btnDelete);
-
+                    dataManager.deleteTask(nameFin, getContext());
+                    linearLayout.removeAllViews();
+                    getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
+                }
+            });
+            linearLayout.addView(btnDelete);
+        }
         Button btnBack = new Button(getActivity());
         btnBack.setText(R.string.go_back);
         btnBack.setBackground(justBackground.getBackground());
-        btnBack.setHeight(justBackground.getHeight());
+        btnBack.setHeight(BUTTON_HEIGHT);
         btnBack.setTextColor(getResources().getColor(R.color.dark_purple));
         btnBack.setTextSize(20f);
         btnBack.setElegantTextHeight(true);

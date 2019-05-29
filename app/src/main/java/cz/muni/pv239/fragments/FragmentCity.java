@@ -45,7 +45,7 @@ public class FragmentCity extends Fragment {
 
         Statistics stats = dataManager.getCurrentStatistics();
         TextView text = view.findViewById(R.id.city_name);
-        text.setText(stats.getMonth() + " "+ stats.getYear());
+        text.setText(stats.getMonth().getMonthName(getContext()) + " "+ stats.getYear());
 
         TableLayout tl = view.findViewById(R.id.city_table);
         tl.setShrinkAllColumns(false);
@@ -59,7 +59,7 @@ public class FragmentCity extends Fragment {
 
                 TableRow row = new TableRow(getContext());
                 TextView text1 = new TextView(getContext());
-                text1.setText(key.toString());
+                text1.setText(key.getBuildingName(getContext()));
                 text1.setTextSize(20);
                 text1.setTextColor(getResources().getColor(R.color.colorwhite));
 

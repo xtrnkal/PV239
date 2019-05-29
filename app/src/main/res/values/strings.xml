@@ -17,4 +17,24 @@
     <string name="about">About</string>
     <string name="reset_data_toast">Data were successfully deleted</string>
 
+    <string name="about_text1">This application was created for class PV239.</string>
+    <string name="about_text2">Anna Trnkalová, FI MUNI Spring 2019</string>
+
+    <string name="january">JANUARY</string>
+    <string name="february">FEBRUARY</string>
+    <string name="march">MARCH</string>
+    <string name="april">APRIL</string>
+    <string name="may">MAY</string>
+    <string name="june">JUNE</string>
+    <string name="july">JULY</string>
+    <string name="august">AUGUST</string>
+    <string name="september">SEPTEMBER</string>
+    <string name="october">OCTOBER</string>
+    <string name="november">NOVEMBER</string>
+    <string name="december">DECEMBER</string>
+
+    <string name="small">SMALL HOUSE</string>
+    <string name="medium">MEDIUM BUILDING</string>
+    <string name="large">HIGH BUILDING</string>
+    <string name="huge">SKYSCRAPER</string>
 </resources>

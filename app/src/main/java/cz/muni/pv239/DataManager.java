@@ -32,15 +32,15 @@ public class DataManager {
     private ArrayList<Task> tasks = new ArrayList<>();
     private String current;
     private int currentYear;
-    private String currentMonth;
+    private Month currentMonth;
 
     public DataManager(Context context) {
         Calendar c = Calendar.getInstance();
         c.setTimeZone(TimeZone.getTimeZone("UK"));
 
-        currentMonth = (Month.values())[c.get(Calendar.MONTH)].toString();
+        currentMonth = (Month.values())[c.get(Calendar.MONTH)];
         currentYear = c.get(Calendar.YEAR);
-        current = currentMonth + currentYear;
+        current = currentMonth.toString() + currentYear;
 
         File file1 = new File(context.getFilesDir() + File.separator + TASKS_FILE);
         try {
@@ -63,7 +63,7 @@ public class DataManager {
         }
 
         if (statistics.get(current) == null) {
-            Statistics tmpCurrent = new Statistics(currentYear, Month.valueOf(currentMonth));
+            Statistics tmpCurrent = new Statistics(currentYear, currentMonth);
             statistics.put(current, tmpCurrent);
         }
     }
