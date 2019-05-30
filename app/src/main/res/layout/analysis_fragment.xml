@@ -9,68 +9,81 @@
     <LinearLayout
         android:id="@+id/analysis_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center|center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="6">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/previous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:minWidth="50dp"
-            android:text="&lt;"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/pie_chart_name"
+        <LinearLayout
+            android:id="@+id/analysis_top_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:textColor="@color/dark_purple"
-            android:textSize="30dp" />
+            android:layout_marginTop="20dp"
+            android:gravity="center|center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="6">
 
-        <TextView
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:minWidth="50dp"
-            android:text="&gt;"
-            android:textSize="40dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:minWidth="50dp"
+                android:text="&lt;"
+                android:textSize="40dp" />
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pie_chart"
-        android:layout_width="match_parent"
-        android:layout_height="294dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp">
+            <TextView
+                android:id="@+id/pie_chart_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textColor="@color/dark_purple"
+                android:textSize="30dp" />
 
-    </com.github.mikephil.charting.charts.PieChart>
+            <TextView
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:minWidth="50dp"
+                android:text="&gt;"
+                android:textSize="40dp" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="294dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp">
 
-        <TableLayout
-            android:id="@+id/pie_chart_table"
+        </com.github.mikephil.charting.charts.PieChart>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:stretchColumns="0">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_name">
 
-        </TableLayout>
+            <TableLayout
+                android:id="@+id/pie_chart_table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="0">
+
+            </TableLayout>
+        </LinearLayout>
+
     </LinearLayout>
+
+
 </LinearLayout>

@@ -100,8 +100,6 @@ public class FragmentAnalysis extends Fragment {
                 text2.setText(value.toString() + " min");
                 text2.setTextSize(20);
 
-                System.out.println(key + " " + value.toString());
-
                 row.addView(text1);
                 row.addView(text2);
 
@@ -113,14 +111,14 @@ public class FragmentAnalysis extends Fragment {
             }
         }
 
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         dataSet.setValueTextSize(20);
         dataSet.setValueFormatter(new MyValueFormatter());
 
         PieData data = new PieData(dataSet);
         chart.setData(data);
-        
-        String previousText = dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
+
+        String previousText = dataManager.getPreviousName(stats.getMonth().toString() + stats.getYear());
 
         TextView previous = view.findViewById(R.id.previous);
 
@@ -132,7 +130,7 @@ public class FragmentAnalysis extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Bundle b = new Bundle();
-                    b.putString("name", dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
+                    b.putString("name", dataManager.getPreviousName(stats.getMonth().toString() + stats.getYear()));
                     FragmentAnalysis fragment = new FragmentAnalysis();
                     fragment.setArguments(b);
                     ll.removeAllViews();
@@ -141,18 +139,18 @@ public class FragmentAnalysis extends Fragment {
             });
         }
 
-        String nextText = dataManager.getNextName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
+        String nextText = dataManager.getNextName(stats.getMonth().toString() + stats.getYear());
         TextView next = view.findViewById(R.id.next);
 
         if (nextText.isEmpty()) {
             next.setVisibility(View.INVISIBLE);
         } else {
             next.setVisibility(View.VISIBLE);
-            previous.setOnClickListener(new View.OnClickListener() {
+            next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle b = new Bundle();
-                    b.putString("name", dataManager.getNextName(stats.getMonth().getMonthName(getContext()) + stats.getYear()));
+                    b.putString("name", dataManager.getNextName(stats.getMonth().toString() + stats.getYear()));
                     FragmentAnalysis fragment = new FragmentAnalysis();
                     fragment.setArguments(b);
                     ll.removeAllViews();

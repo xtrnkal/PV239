@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     public MainActivity() {
-
     }
 
     @Override
