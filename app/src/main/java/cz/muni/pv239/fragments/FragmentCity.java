@@ -46,7 +46,6 @@ public class FragmentCity extends Fragment {
         text.setText(stats.getMonth().getMonthName(getContext()) + " " + stats.getYear());
 
         TableLayout tl = view.findViewById(R.id.city_table);
-        tl.setShrinkAllColumns(false);
 
         if (stats != null && !stats.getValues().isEmpty()) {
             int i = 0;
@@ -69,9 +68,6 @@ public class FragmentCity extends Fragment {
                 row.addView(text1);
                 row.addView(text2);
 
-                row.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-                row.setGravity(Gravity.CENTER);
                 tl.addView(row);
                 i++;
             }

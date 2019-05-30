@@ -63,6 +63,9 @@ public class DataManager {
     }
 
     public String getPreviousName(String name) {
+        if (statistics.get(name) == null) {
+            return "";
+        }
         Month m = statistics.get(name).getMonth();
         int y = statistics.get(name).getYear();
 
@@ -83,6 +86,9 @@ public class DataManager {
     }
 
     public String getNextName(String name) {
+        if (statistics.get(name) == null) {
+            return "";
+        }
         Month m = statistics.get(name).getMonth();
         int y = statistics.get(name).getYear();
 

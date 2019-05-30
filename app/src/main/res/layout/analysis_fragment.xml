@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -54,14 +55,22 @@
 
     </com.github.mikephil.charting.charts.PieChart>
 
-    <TableLayout
-        android:id="@+id/pie_chart_table"
+    <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-
-
+        android:orientation="horizontal"
         android:gravity="center"
-        android:textAlignment="center"></TableLayout>
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp">
+
+        <TableLayout
+            android:id="@+id/pie_chart_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="0">
+
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>

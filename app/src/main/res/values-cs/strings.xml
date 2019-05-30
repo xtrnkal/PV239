@@ -16,6 +16,11 @@
     <string name="reset_data">Resetovat data</string>
     <string name="about">O aplikaci</string>
     <string name="reset_data_toast">Data byla úspěšně smazána</string>
+    <string name="edit_task_toast">Změny byly uloženy</string>
+    <string name="add_task_toast">Úkol byl vytvořen</string>
+    <string name="delete_task_toast">Úkol byl smazán</string>
+    <string name="empty_task_toast">Název úkolu nesmí být prázdný</string>
+    <string name="empty_time_toast">Nastavte alespoň 1 minutu</string>
 
     <string name="about_text1">tato aplikace byla vytvoře v rámci předmětu PV239.</string>
     <string name="about_text2">Anna Trnkalová, FI MUNI Jaro 2019</string>
@@ -35,7 +40,7 @@
     <string name="december">PROSINEC</string>
 
     <string name="small">DOMEK</string>
-    <string name="medium">STŘDNÍ BUDOVA</string>
+    <string name="medium">STŘEDNÍ BUDOVA</string>
     <string name="large">VYSOKÁ BUDOVA</string>
     <string name="huge">MRAKODRAP</string>
 </resources>

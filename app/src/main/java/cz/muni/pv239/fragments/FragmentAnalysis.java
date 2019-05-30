@@ -62,7 +62,6 @@ public class FragmentAnalysis extends Fragment {
 
         final LinearLayout ll = view.findViewById(R.id.analysis_container);
 
-
         PieChart chart = view.findViewById(R.id.pie_chart);
         chart.setUsePercentValues(true);
         chart.setHoleRadius(40f);
@@ -70,7 +69,6 @@ public class FragmentAnalysis extends Fragment {
 
         chart.setDescription(null);    // Hide the description
         chart.getLegend().setEnabled(false);
-        //chart.setEntryLabelTextSize(0f);
 
         List<PieEntry> values = new ArrayList<>();
         TextView text = view.findViewById(R.id.pie_chart_name);
@@ -85,8 +83,6 @@ public class FragmentAnalysis extends Fragment {
             for (Map.Entry<String, Integer> entry : stats.getValues().entrySet()) {
                 //chart stats
                 values.add(new PieEntry(entry.getValue(), entry.getKey()));
-                //dataSet.addEntry(new PieEntry(entry.getValue(), entry.getKey()));
-                //dataSet.getColor(i);
 
                 // table rows
                 String key = entry.getKey();
@@ -115,7 +111,6 @@ public class FragmentAnalysis extends Fragment {
                 tl.addView(row);
                 i++;
             }
-
         }
 
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -124,7 +119,7 @@ public class FragmentAnalysis extends Fragment {
 
         PieData data = new PieData(dataSet);
         chart.setData(data);
-
+        
         String previousText = dataManager.getPreviousName(stats.getMonth().getMonthName(getContext()) + stats.getYear());
 
         TextView previous = view.findViewById(R.id.previous);

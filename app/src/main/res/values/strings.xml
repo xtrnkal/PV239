@@ -16,6 +16,11 @@
     <string name="reset_data">Reset data</string>
     <string name="about">About</string>
     <string name="reset_data_toast">Data were successfully deleted</string>
+    <string name="edit_task_toast">Changes were saved</string>
+    <string name="add_task_toast">Task was created</string>
+    <string name="delete_task_toast">Task was deleted</string>
+    <string name="empty_task_toast">Task name cannot be empty</string>
+    <string name="empty_time_toast">Set at least 1 minute</string>
 
     <string name="about_text1">This application was created for class PV239.</string>
     <string name="about_text2">Anna Trnkalová, FI MUNI Spring 2019</string>

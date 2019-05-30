@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cz.muni.pv239.R;
 
@@ -97,14 +98,18 @@ public class FragmentEditTask extends Fragment {
                 if (!text.getText().toString().isEmpty()) {
                     if (exists) {
                         dataManager.editTask(nameFin, text.getText().toString(), getContext());
+                        Toast.makeText(getContext(), R.string.edit_task_toast, Toast.LENGTH_SHORT).show();
                     } else {
                         dataManager.addTask(text.getText().toString(), getContext());
+                        Toast.makeText(getContext(), R.string.add_task_toast, Toast.LENGTH_SHORT).show();
                     }
 
                     hideKeyboard(getActivity());
 
                     linearLayout.removeAllViews();
                     getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
+                } else {
+                    Toast.makeText(getContext(), R.string.empty_task_toast, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -126,6 +131,7 @@ public class FragmentEditTask extends Fragment {
                     hideKeyboard(getActivity());
 
                     dataManager.deleteTask(nameFin, getContext());
+                    Toast.makeText(getContext(), R.string.delete_task_toast, Toast.LENGTH_SHORT).show();
                     linearLayout.removeAllViews();
                     getFragmentManager().beginTransaction().replace(R.id.task_fragment_container, new FragmentTaskList()).commit();
                 }

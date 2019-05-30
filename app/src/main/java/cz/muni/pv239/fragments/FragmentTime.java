@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.triggertrap.seekarc.SeekArc;
 import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
@@ -88,6 +89,8 @@ public class FragmentTime extends Fragment {
                         mTimeLeftInMillis = mTimeStartInMillis;
                         mSeekArc.setVisibility(View.INVISIBLE);
                         startTimer();
+                    } else {
+                        Toast.makeText(getContext(), R.string.empty_time_toast, Toast.LENGTH_LONG).show();
                     }
                 }
             }
